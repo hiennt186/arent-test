@@ -22,6 +22,9 @@ module.exports = {
         gray: {
           400: "#777777"
         }
+      },
+      backgroundImage: {
+        'primary-gradient': 'linear-gradient(90deg, #FFCC21 0%, #FF963C 100%)',
       }
     },
   },

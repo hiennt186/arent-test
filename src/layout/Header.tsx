@@ -35,35 +35,35 @@ const Header: React.FC = () => {
   const menuItems = [
     {
       text: "自分の記録",
-      href: "/record",
+      href: `${process.env.PUBLIC_URL}/record`,
       icon: `${process.env.PUBLIC_URL}/icons/icon_memo.png`,
     },
     {
       text: "チャレンジ",
-      href: "/challenge",
+      href: `${process.env.PUBLIC_URL}/challenge`,
       icon: `${process.env.PUBLIC_URL}/icons/icon_challenge.png`,
     },
     {
       text: "お知らせ",
-      href: "/notification",
+      href: `${process.env.PUBLIC_URL}/notification`,
       icon: `${process.env.PUBLIC_URL}/icons/icon_info.png`,
       notificationCount: 1,
     },
   ];
 
   const dropdownItems = [
-    { text: "自分の記録", href: "/record" },
-    { text: "体重グラフ", href: "/graph" },
-    { text: "目標", href: "/goal" },
-    { text: "選択中のコース", href: "/course" },
-    { text: "コラム一覧", href: "/column" },
-    { text: "設定", href: "/setting" },
+    { text: "自分の記録", href: `${process.env.PUBLIC_URL}/record` },
+    { text: "体重グラフ", href: `${process.env.PUBLIC_URL}/graph` },
+    { text: "目標", href: `${process.env.PUBLIC_URL}/goal` },
+    { text: "選択中のコース", href: `${process.env.PUBLIC_URL}/course` },
+    { text: "コラム一覧", href: `${process.env.PUBLIC_URL}/column` },
+    { text: "設定", href: `${process.env.PUBLIC_URL}/setting` },
   ];
 
   return (
     <header className="bg-dark-500 text-white h-[64px] flex items-center relative">
       <div className="mx-auto w-[960px] flex items-center justify-between">
-        <a href="/">
+        <a href={`${process.env.PUBLIC_URL}/`}>
           <img
             src={`${process.env.PUBLIC_URL}/logo.png`}
             alt="Healthy Logo"

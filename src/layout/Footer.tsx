@@ -2,12 +2,12 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   const menuItems = [
-    { text: '会員登録', href: '/register' },
-    { text: '運営会社', href: '/company' },
-    { text: '利用規約', href: '/terms' },
-    { text: '個人情報の取扱について', href: '/privacy' },
-    { text: '特定商取引法に基づく表記', href: '/transaction' },
-    { text: 'お問い合わせ', href: '/contact' },
+    { text: '会員登録', href: `${process.env.PUBLIC_URL}/register` },
+    { text: '運営会社', href: `${process.env.PUBLIC_URL}/company` },
+    { text: '利用規約', href: `${process.env.PUBLIC_URL}/terms` },
+    { text: '個人情報の取扱について', href: `${process.env.PUBLIC_URL}/privacy` },
+    { text: '特定商取引法に基づく表記', href: `${process.env.PUBLIC_URL}/transaction` },
+    { text: 'お問い合わせ', href: `${process.env.PUBLIC_URL}/contact` },
   ];
 
   return (
