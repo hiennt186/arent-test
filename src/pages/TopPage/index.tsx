@@ -48,8 +48,8 @@ const TopPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <section className="w-full bg-dark-600 text-white">
-        <div className="mx-auto w-full flex">
-          <div className="w-[540px] relative">
+        <div className="mx-auto w-full flex flex-col lg:flex-row">
+          <div className="w-full lg:w-[42%] relative">
             <img 
               src={`${process.env.PUBLIC_URL}/assets/d01.jpg`}
               alt="Main"
@@ -64,7 +64,7 @@ const TopPage: React.FC = () => {
               )}
             </div>
           </div>
-          <div className="flex-1 px-16">
+          <div className="flex-1 px-4 md:px-16">
             <div className="h-full flex items-center justify-center">
               <div className="w-full">
                 {!isBodyWeightLoading && bodyWeightData?.data && bodyWeightData.data.length > 0 && (
@@ -77,7 +77,7 @@ const TopPage: React.FC = () => {
       </section>
 
       <section className="mx-auto mt-6">
-        <div className="grid grid-cols-4 gap-16 place-items-center w-auto mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 place-items-center">
           {[
             { text: 'Morning', icon: 'icon_knife.png' },
             { text: 'Lunch', icon: 'icon_knife.png' },
@@ -107,8 +107,8 @@ const TopPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="w-[960px] mt-6">
-        <div className="grid grid-cols-4 gap-2">
+      <section className="container mx-auto mt-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           {data?.meals.map((meal) => (
             <div key={meal.id} className="aspect-square bg-gray-200 relative">
               <img
@@ -126,7 +126,7 @@ const TopPage: React.FC = () => {
         </div>
       </section>
 
-      <div className="mt-8 mb-16">
+      <section className="mt-8 mb-16">
         {data?.hasMore && (
           <button 
             onClick={handleLoadMore}
@@ -138,7 +138,7 @@ const TopPage: React.FC = () => {
             </span>
           </button>
         )}
-      </div>
+      </section>
     </div>
   );
 };

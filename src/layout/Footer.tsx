@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-dark-500 text-white h-[128px] mt-auto flex items-center">
-      <div className="mx-auto w-[960px]">
+      <div className="container mx-auto">
         <nav className="flex flex-wrap gap-x-[45px] gap-y-4">
           {menuItems.map((item, index) => (
             <a

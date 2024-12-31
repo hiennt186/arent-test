@@ -25,7 +25,15 @@ module.exports = {
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(90deg, #FFCC21 0%, #FF963C 100%)',
-      }
+      },
+      container: {
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '960px',
+          xl: '1536px',
+        },  
+      },
     },
   },
   plugins: [],
