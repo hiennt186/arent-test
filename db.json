@@ -1,13 +1,33 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
+  "meals": [
+    { "id": 1, "type": "Morning", "date": "05.21", "image": "m01.jpg" },
+    { "id": 2, "type": "Lunch", "date": "05.21", "image": "l03.jpg" },
+    { "id": 3, "type": "Dinner", "date": "05.21", "image": "d01.jpg" },
+    { "id": 4, "type": "Snack", "date": "05.21", "image": "l01.jpg" },
+    { "id": 5, "type": "Morning", "date": "05.20", "image": "m01.jpg" },
+    { "id": 6, "type": "Lunch", "date": "05.20", "image": "l02.jpg" },
+    { "id": 7, "type": "Dinner", "date": "05.20", "image": "d02.jpg" },
+    { "id": 8, "type": "Snack", "date": "05.20", "image": "s01.jpg" },
+    { "id": 9, "type": "Morning", "date": "05.19", "image": "m01.jpg" },
+    { "id": 10, "type": "Lunch", "date": "05.19", "image": "l03.jpg" },
+    { "id": 11, "type": "Dinner", "date": "05.19", "image": "d01.jpg" },
+    { "id": 12, "type": "Snack", "date": "05.19", "image": "l01.jpg" }
   ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  "progress": [
+    { "id": 1, "date": "05/21", "percentage": 75 }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "bodyWeight": [
+    { "month": "6", "value1": 95, "value2": 90 },
+    { "month": "7", "value1": 55, "value2": 75 },
+    { "month": "8", "value1": 70, "value2": 65 },
+    { "month": "9", "value1": 65, "value2": 55 },
+    { "month": "10", "value1": 45, "value2": 50 },
+    { "month": "11", "value1": 55, "value2": 45 },
+    { "month": "12", "value1": 70, "value2": 45 },
+    { "month": "1", "value1": 50, "value2": 40 },
+    { "month": "2", "value1": 45, "value2": 35 },
+    { "month": "3", "value1": 40, "value2": 30 },
+    { "month": "4", "value1": 35, "value2": 28 },
+    { "month": "5", "value1": 38, "value2": 25 }
+  ]
 }

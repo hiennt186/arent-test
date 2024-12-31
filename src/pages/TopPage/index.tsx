@@ -1,42 +1,48 @@
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import CustomLineChart from './LineChart';
 import CircleProgress from './CircleProgress';
+import { getMeals, MealsResponse } from '../../services/api/meals';
+import { getProgress, getBodyWeight } from '../../services/api/charts';
 
 const ITEMS_PER_PAGE = 8;
 
-const MEAL_DATA = [
-  { id: 1, type: 'Morning', date: '05.21', image: 'm01.jpg' },
-  { id: 2, type: 'Lunch', date: '05.21', image: 'l03.jpg' },
-  { id: 3, type: 'Dinner', date: '05.21', image: 'd01.jpg' },
-  { id: 4, type: 'Snack', date: '05.21', image: 'l01.jpg' },
-  { id: 5, type: 'Morning', date: '05.20', image: 'm01.jpg' },
-  { id: 6, type: 'Lunch', date: '05.20', image: 'l02.jpg' },
-  { id: 7, type: 'Dinner', date: '05.20', image: 'd02.jpg' },
-  { id: 8, type: 'Snack', date: '05.20', image: 's01.jpg' },
-  { id: 9, type: 'Morning', date: '05.19', image: 'm01.jpg' },
-  { id: 10, type: 'Lunch', date: '05.19', image: 'l03.jpg' },
-  { id: 11, type: 'Dinner', date: '05.19', image: 'd01.jpg' },
-  { id: 12, type: 'Snack', date: '05.19', image: 'l01.jpg' },
-];
-
 const TopPage: React.FC = () => {
   const [selectedType, setSelectedType] = useState<string | null>(null);
-  const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
-  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
-  const filteredMeals = selectedType 
-    ? MEAL_DATA.filter(meal => meal.type === selectedType)
-    : MEAL_DATA;
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ['meals', { page, type: selectedType, sortBy: 'date', order: 'desc' }],
+    queryFn: () => getMeals({ 
+      page, 
+      limit: ITEMS_PER_PAGE, 
+      type: selectedType,
+      sortBy: 'date',
+      order: 'desc'
+    }),
+    placeholderData: keepPreviousData => keepPreviousData,
+    select: (newData: MealsResponse): MealsResponse => {
+      if (page === 1) return newData;
+      
+      return {
+        ...newData,
+        meals: [...(data?.meals || []), ...newData.meals]
+      };
+    }
+  });
 
-  const visibleMeals = filteredMeals.slice(0, visibleItems);
-  const hasMore = visibleItems < filteredMeals.length;
+  const { data: progressData, isLoading: isProgressLoading } = useQuery({
+    queryKey: ['progress'],
+    queryFn: getProgress
+  });
 
-  const handleLoadMore = async () => {
-    setIsLoading(true);
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setVisibleItems(prev => prev + ITEMS_PER_PAGE);
-    setIsLoading(false);
+  const { data: bodyWeightData, isLoading: isBodyWeightLoading } = useQuery({
+    queryKey: ['bodyWeight'],
+    queryFn: getBodyWeight
+  });
+
+  const handleLoadMore = () => {
+    setPage(prev => prev + 1);
   };
 
   return (
@@ -50,13 +56,20 @@ const TopPage: React.FC = () => {
               className="w-full h-[312px] object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <CircleProgress percentage={75} date="05/21" />
+              {!isProgressLoading && (
+                <CircleProgress 
+                  percentage={progressData?.data.percentage ?? 0} 
+                  date={progressData?.data.date ?? ''} 
+                />
+              )}
             </div>
           </div>
           <div className="flex-1 px-16">
             <div className="h-full flex items-center justify-center">
               <div className="w-full">
-                <CustomLineChart />
+                {!isBodyWeightLoading && bodyWeightData?.data && bodyWeightData.data.length > 0 && (
+                  <CustomLineChart data={bodyWeightData.data}/>
+                )}
               </div>
             </div>
           </div>
@@ -96,7 +109,7 @@ const TopPage: React.FC = () => {
 
       <section className="w-[960px] mt-6">
         <div className="grid grid-cols-4 gap-2">
-          {visibleMeals.map((meal) => (
+          {data?.meals.map((meal) => (
             <div key={meal.id} className="aspect-square bg-gray-200 relative">
               <img
                 src={`${process.env.PUBLIC_URL}/assets/${meal.image}`}
@@ -114,14 +127,14 @@ const TopPage: React.FC = () => {
       </section>
 
       <div className="mt-8 mb-16">
-        {hasMore && (
+        {data?.hasMore && (
           <button 
             onClick={handleLoadMore}
-            disabled={isLoading}
+            disabled={isLoading || isFetching}
             className="h-[56px] bg-primary-gradient text-white px-16 rounded hover:opacity-80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span className="font-['Hiragino_Kaku_Gothic_Pro'] text-[18px] leading-[26px] font-light">
-              {isLoading ? '読み込み中...' : '記録をもっと見る'}
+              {(isLoading || isFetching) ? '読み込み中...' : '記録をもっと見る'}
             </span>
           </button>
         )}
