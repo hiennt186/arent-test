@@ -12,21 +12,22 @@ const TopPage: React.FC = () => {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 
-  const { 
-    data, 
-    isLoading, 
-    isFetching, 
-    error: mealsError 
+  const {
+    data,
+    isLoading,
+    isFetching,
+    error: mealsError
   } = useQuery({
     queryKey: ['meals', { page, type: selectedType, sortBy: 'date', order: 'desc' }],
-    queryFn: () => getMeals({ 
-      page, 
-      limit: ITEMS_PER_PAGE, 
-      type: selectedType,
-      sortBy: 'date',
-      order: 'desc'
-    }),
-    placeholderData: keepPreviousData => keepPreviousData,
+    queryFn: () =>
+      getMeals({
+        page,
+        limit: ITEMS_PER_PAGE,
+        type: selectedType,
+        sortBy: 'date',
+        order: 'desc'
+      }),
+    placeholderData: (keepPreviousData) => keepPreviousData,
     select: (newData: MealsResponse): MealsResponse => {
       if (page === 1) return newData;
       return {
@@ -36,8 +37,8 @@ const TopPage: React.FC = () => {
     }
   });
 
-  const { 
-    data: progressData, 
+  const {
+    data: progressData,
     isLoading: isProgressLoading,
     error: progressError
   } = useQuery({
@@ -45,8 +46,8 @@ const TopPage: React.FC = () => {
     queryFn: getProgress
   });
 
-  const { 
-    data: bodyWeightData, 
+  const {
+    data: bodyWeightData,
     isLoading: isBodyWeightLoading,
     error: bodyWeightError
   } = useQuery({
@@ -55,7 +56,7 @@ const TopPage: React.FC = () => {
   });
 
   const handleLoadMore = () => {
-    setPage(prev => prev + 1);
+    setPage((prev) => prev + 1);
   };
 
   return (
@@ -68,11 +69,8 @@ const TopPage: React.FC = () => {
         progressError={progressError}
         bodyWeightError={bodyWeightError}
       />
-      
-      <FilterSection
-        selectedType={selectedType}
-        onTypeSelect={setSelectedType}
-      />
+
+      <FilterSection selectedType={selectedType} onTypeSelect={setSelectedType} />
 
       <MealsGrid
         data={data}

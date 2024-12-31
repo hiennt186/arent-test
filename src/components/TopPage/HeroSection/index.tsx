@@ -33,21 +33,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
     );
   }
-  
+
   return (
     <section className="w-full bg-dark-600 text-white">
       <div className="mx-auto w-full flex flex-col lg:flex-row">
         <div className="w-full lg:w-[42%] relative">
-          <img 
+          <img
             src={`${process.env.PUBLIC_URL}/assets/d01.jpg`}
             alt="Main"
             className="w-full h-[312px] object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             {!isProgressLoading && (
-              <CircleProgress 
-                percentage={progressData?.data.percentage ?? 0} 
-                date={progressData?.data.date ?? ''} 
+              <CircleProgress
+                percentage={progressData?.data.percentage ?? 0}
+                date={progressData?.data.date ?? ''}
               />
             )}
           </div>
@@ -56,7 +56,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="h-full flex items-center justify-center">
             <div className="w-full">
               {!isBodyWeightLoading && bodyWeightData?.data && bodyWeightData.data.length > 0 && (
-                <CustomLineChart data={bodyWeightData.data}/>
+                <CustomLineChart data={bodyWeightData.data} />
               )}
             </div>
           </div>

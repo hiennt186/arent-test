@@ -11,7 +11,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
   percentage,
   date,
   size = 180,
-  strokeWidth = 4,
+  strokeWidth = 4
 }) => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const radius = (size - strokeWidth) / 2;
@@ -20,10 +20,10 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
 
   useEffect(() => {
     setCurrentPercentage(0);
-    
+
     const step = percentage / 10;
     const interval = setInterval(() => {
-      setCurrentPercentage(prev => {
+      setCurrentPercentage((prev) => {
         if (prev >= percentage) {
           clearInterval(interval);
           return percentage;
@@ -58,16 +58,19 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
           }}
         />
       </svg>
-      <div 
+      <div
         className="absolute text-center text-white"
         style={{ textShadow: '0px 0px 6px #FC7400' }}
       >
         <div className="font-['Inter'] text-[18px] leading-[22px] font-normal">
-          {date} <span className="text-[25px] leading-[30px] font-normal">{currentPercentage.toFixed(0)}%</span>
+          {date}{' '}
+          <span className="text-[25px] leading-[30px] font-normal">
+            {currentPercentage.toFixed(0)}%
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default CircleProgress; 
+export default CircleProgress;

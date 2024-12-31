@@ -47,4 +47,4 @@ export interface GetMealsParams {
   type?: string | null;
   sortBy?: string;
   order?: 'asc' | 'desc';
-} 
+}

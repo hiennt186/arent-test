@@ -6,25 +6,19 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // Import your page components (create these files)
-const Record = () => (
-  <h1 className="text-2xl font-bold mb-4">My Record</h1>
-);
+const Record = () => <h1 className="text-2xl font-bold mb-4">My Record</h1>;
 
-const Challenge = () => (
-  <h1 className="text-2xl font-bold mb-4">Challenge</h1>
-);
+const Challenge = () => <h1 className="text-2xl font-bold mb-4">Challenge</h1>;
 
-const Notification = () => (
-  <h1 className="text-2xl font-bold mb-4">Notifications</h1>
-);
+const Notification = () => <h1 className="text-2xl font-bold mb-4">Notifications</h1>;
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 1000 * 60 * 5, // 5 minutes
-      retry: 1,
-    },
-  },
+      retry: 1
+    }
+  }
 });
 
 function App() {

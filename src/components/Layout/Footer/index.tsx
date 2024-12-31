@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     { text: '利用規約', href: `${process.env.PUBLIC_URL}/terms` },
     { text: '個人情報の取扱について', href: `${process.env.PUBLIC_URL}/privacy` },
     { text: '特定商取引法に基づく表記', href: `${process.env.PUBLIC_URL}/transaction` },
-    { text: 'お問い合わせ', href: `${process.env.PUBLIC_URL}/contact` },
+    { text: 'お問い合わせ', href: `${process.env.PUBLIC_URL}/contact` }
   ];
 
   return (

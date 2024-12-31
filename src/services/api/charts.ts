@@ -9,4 +9,4 @@ export const getProgress = async (): Promise<ProgressResponse> => {
 export const getBodyWeight = async (): Promise<BodyWeightResponse> => {
   const { data } = await api.get('/bodyWeight');
   return { data };
-}; 
+};

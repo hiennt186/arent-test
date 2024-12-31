@@ -46,13 +46,13 @@ const MealsGrid: React.FC<MealsGridProps> = ({
 
       <section className="mt-8 mb-16">
         {hasMore && (
-          <button 
+          <button
             onClick={onLoadMore}
             disabled={isLoading || isFetching}
             className="h-[56px] bg-primary-gradient text-white px-16 rounded hover:opacity-80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span className="font-['Hiragino_Kaku_Gothic_Pro'] text-[18px] leading-[26px] font-light">
-              {(isLoading || isFetching) ? '読み込み中...' : '記録をもっと見る'}
+              {isLoading || isFetching ? '読み込み中...' : '記録をもっと見る'}
             </span>
           </button>
         )}
