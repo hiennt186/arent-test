@@ -11,7 +11,15 @@
     { "id": 9, "type": "Morning", "date": "05.19", "image": "m01.jpg" },
     { "id": 10, "type": "Lunch", "date": "05.19", "image": "l03.jpg" },
     { "id": 11, "type": "Dinner", "date": "05.19", "image": "d01.jpg" },
-    { "id": 12, "type": "Snack", "date": "05.19", "image": "l01.jpg" }
+    { "id": 12, "type": "Snack", "date": "05.19", "image": "l01.jpg" },
+    { "id": 13, "type": "Morning", "date": "05.18", "image": "m01.jpg" },
+    { "id": 14, "type": "Lunch", "date": "05.18", "image": "l02.jpg" },
+    { "id": 15, "type": "Dinner", "date": "05.18", "image": "d02.jpg" },
+    { "id": 16, "type": "Snack", "date": "05.18", "image": "s01.jpg" },
+    { "id": 17, "type": "Morning", "date": "05.17", "image": "m01.jpg" },
+    { "id": 18, "type": "Lunch", "date": "05.17", "image": "l03.jpg" },
+    { "id": 19, "type": "Dinner", "date": "05.17", "image": "d01.jpg" },
+    { "id": 20, "type": "Snack", "date": "05.17", "image": "l01.jpg" }
   ],
   "progress": [
     { "id": 1, "date": "05/21", "percentage": 75 }

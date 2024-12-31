@@ -1,5 +1,5 @@
 import api from './axiosInstance';
-import { MealsResponse, JsonServerResponse, GetMealsParams } from '../../types/api';
+import { MealsResponse, Meal, GetMealsParams } from '../../types/api';
 
 export const getMeals = async ({
   page = 1,
@@ -8,17 +8,20 @@ export const getMeals = async ({
   sortBy = 'date',
   order = 'desc'
 }: GetMealsParams = {}): Promise<MealsResponse> => {
-  let url = `/meals?_page=${page}&_per_page=${limit}&_sort=${sortBy}&_order=${order}`;
+  let url = `/meals?_page=${page}&_limit=${limit}&_sort=${sortBy}&_order=${order}`;
 
   if (type) {
     url += `&type=${type}`;
   }
 
-  const { data: jsonResponse } = await api.get<JsonServerResponse>(url);
+  const response = await api.get<Array<Meal>>(url);
+  const totalCount = parseInt(response.headers['x-total-count'] || '0', 10);
+  const currentPage = page;
+  const totalPages = Math.ceil(totalCount / limit);
 
   return {
-    meals: jsonResponse.data,
-    totalCount: jsonResponse.items,
-    hasMore: jsonResponse.next !== null
+    meals: response.data,
+    totalCount,
+    hasMore: currentPage < totalPages
   };
 };

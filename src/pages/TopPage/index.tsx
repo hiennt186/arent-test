@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getMeals } from '../../services/api/meals';
 import { getProgress, getBodyWeight } from '../../services/api/charts';
 import HeroSection from '../../components/TopPage/HeroSection';
 import FilterSection from '../../components/TopPage/FilterSection';
 import MealsGrid from '../../components/TopPage/MealsGrid';
-import { MealsResponse } from '../../types/api';
+import { Meal, MealsResponse } from '../../types/api';
 const ITEMS_PER_PAGE = 8;
 
 const TopPage: React.FC = () => {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [page, setPage] = useState(1);
+  const [meals, setMeals] = useState<Meal[]>([]);
 
   const {
     data,
@@ -27,15 +28,14 @@ const TopPage: React.FC = () => {
         sortBy: 'date',
         order: 'desc'
       }),
-    placeholderData: (keepPreviousData) => keepPreviousData,
-    select: (newData: MealsResponse): MealsResponse => {
-      if (page === 1) return newData;
-      return {
-        ...newData,
-        meals: [...(data?.meals || []), ...newData.meals]
-      };
-    }
+    placeholderData: (keepPreviousData) => keepPreviousData
   });
+
+  useEffect(() => {
+    if (data) {
+      setMeals((prevMeals) => [...prevMeals, ...data.meals]);
+    }
+  }, [data]);
 
   const {
     data: progressData,
@@ -59,6 +59,12 @@ const TopPage: React.FC = () => {
     setPage((prev) => prev + 1);
   };
 
+  const handleTypeSelect = (type: string | null) => {
+    setSelectedType(type);
+    setPage(1);
+    setMeals([]);
+  };
+
   return (
     <div className="flex flex-col items-center">
       <HeroSection
@@ -70,10 +76,10 @@ const TopPage: React.FC = () => {
         bodyWeightError={bodyWeightError}
       />
 
-      <FilterSection selectedType={selectedType} onTypeSelect={setSelectedType} />
+      <FilterSection selectedType={selectedType} onTypeSelect={handleTypeSelect} />
 
       <MealsGrid
-        data={data}
+        data={{ ...data, meals } as MealsResponse}
         error={mealsError}
         isLoading={isLoading}
         isFetching={isFetching}

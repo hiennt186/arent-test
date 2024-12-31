@@ -31,16 +31,6 @@ export interface MealsResponse {
   hasMore: boolean;
 }
 
-export interface JsonServerResponse {
-  first: number;
-  prev: number | null;
-  next: number | null;
-  last: number;
-  pages: number;
-  items: number;
-  data: Meal[];
-}
-
 export interface GetMealsParams {
   page?: number;
   limit?: number;

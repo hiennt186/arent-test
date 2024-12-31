@@ -19,6 +19,7 @@ const MealsGrid: React.FC<MealsGridProps> = ({
   hasMore,
   onLoadMore
 }) => {
+  console.log(error);
   return (
     <>
       <section className="container mx-auto mt-6">
