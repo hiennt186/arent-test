@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/arent-test/static/css/main.4096b2dc.css",
-    "main.js": "/arent-test/static/js/main.6b76a3f1.js",
-    "static/js/453.a697a988.chunk.js": "/arent-test/static/js/453.a697a988.chunk.js",
-    "static/media/logo.svg": "/arent-test/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/arent-test/static/css/main.3a949695.css",
+    "main.js": "/arent-test/static/js/main.1dc12d34.js",
+    "static/js/453.9509aaa0.chunk.js": "/arent-test/static/js/453.9509aaa0.chunk.js",
     "index.html": "/arent-test/index.html",
-    "main.4096b2dc.css.map": "/arent-test/static/css/main.4096b2dc.css.map",
-    "main.6b76a3f1.js.map": "/arent-test/static/js/main.6b76a3f1.js.map",
-    "453.a697a988.chunk.js.map": "/arent-test/static/js/453.a697a988.chunk.js.map"
+    "main.3a949695.css.map": "/arent-test/static/css/main.3a949695.css.map",
+    "main.1dc12d34.js.map": "/arent-test/static/js/main.1dc12d34.js.map",
+    "453.9509aaa0.chunk.js.map": "/arent-test/static/js/453.9509aaa0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4096b2dc.css",
-    "static/js/main.6b76a3f1.js"
+    "static/css/main.3a949695.css",
+    "static/js/main.1dc12d34.js"
   ]
 }
